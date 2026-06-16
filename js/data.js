@@ -152,41 +152,10 @@ const TENSES = [
   { id: "futuro", name: "Futuro" },
 ];
 
+// Curated IRREGULAR / stem-changing verbs. Regular verbs are generated at load
+// time by js/conjugator.js, which merges these into the global VERBS list.
 // Each verb: conjugations[tense] = [yo, tú, él, nosotros, vosotros, ellos]
-const VERBS = [
-  {
-    infinitive: "hablar",
-    en: "to speak",
-    type: "regular -ar",
-    conjugations: {
-      presente: ["hablo", "hablas", "habla", "hablamos", "habláis", "hablan"],
-      preterito: ["hablé", "hablaste", "habló", "hablamos", "hablasteis", "hablaron"],
-      imperfecto: ["hablaba", "hablabas", "hablaba", "hablábamos", "hablabais", "hablaban"],
-      futuro: ["hablaré", "hablarás", "hablará", "hablaremos", "hablaréis", "hablarán"],
-    },
-  },
-  {
-    infinitive: "comer",
-    en: "to eat",
-    type: "regular -er",
-    conjugations: {
-      presente: ["como", "comes", "come", "comemos", "coméis", "comen"],
-      preterito: ["comí", "comiste", "comió", "comimos", "comisteis", "comieron"],
-      imperfecto: ["comía", "comías", "comía", "comíamos", "comíais", "comían"],
-      futuro: ["comeré", "comerás", "comerá", "comeremos", "comeréis", "comerán"],
-    },
-  },
-  {
-    infinitive: "vivir",
-    en: "to live",
-    type: "regular -ir",
-    conjugations: {
-      presente: ["vivo", "vives", "vive", "vivimos", "vivís", "viven"],
-      preterito: ["viví", "viviste", "vivió", "vivimos", "vivisteis", "vivieron"],
-      imperfecto: ["vivía", "vivías", "vivía", "vivíamos", "vivíais", "vivían"],
-      futuro: ["viviré", "vivirás", "vivirá", "viviremos", "viviréis", "vivirán"],
-    },
-  },
+const IRREGULAR_VERBS = [
   {
     infinitive: "ser",
     en: "to be (essence)",
