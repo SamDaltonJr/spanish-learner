@@ -172,8 +172,17 @@ h2 { margin-top: 0; }
 
 .fc-controls { display: flex; gap: 14px; align-items: center; justify-content: center; margin: 10px 0; flex-wrap: wrap; }
 .auto-toggle { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9rem; cursor: pointer; }
-.voice-note { max-width: 460px; margin: 4px auto 0; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 0.82rem; color: var(--muted); text-align: center; }
-.voice-note em { font-style: normal; color: var(--ink); }
+/* Shared "no Spanish voice" banner */
+.voice-banner { background: #fff6e0; border-bottom: 1px solid var(--border); color: var(--ink); padding: 10px 16px; font-size: 0.84rem; display: flex; gap: 12px; align-items: center; justify-content: center; }
+.voice-banner em { font-style: normal; font-weight: 600; }
+.voice-banner-x { background: none; border: none; font-size: 1.3rem; line-height: 1; cursor: pointer; color: var(--muted); padding: 0 4px; }
+
+/* Small inline speaker button used in quiz and conjugation */
+.icon-speak { background: none; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; padding: 3px 9px; font-size: 0.95rem; line-height: 1.2; }
+.icon-speak:hover { border-color: var(--accent); }
+.quiz-prompt-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.quiz-prompt-row .quiz-prompt { margin-bottom: 0; }
+.conj-answer .icon-speak { padding: 1px 6px; font-size: 0.8rem; }
 .rate-row { display: flex; gap: 8px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
 .btn.rate[data-grade="again"] { border-color: #e2b6b1; }
 .btn.rate[data-grade="easy"] { border-color: #b3d9c2; }

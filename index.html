@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aprende Español · Spanish Learner</title>
-  <link rel="stylesheet" href="css/styles.css?v=4" />
+  <link rel="stylesheet" href="css/styles.css?v=5" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇪🇸</text></svg>" />
 </head>
 <body>
@@ -23,6 +23,11 @@
       <button class="tab" data-view="chat">💬 Tutor</button>
     </nav>
   </header>
+
+  <div class="voice-banner" id="voiceBanner" hidden>
+    <span id="voiceBannerText"></span>
+    <button class="voice-banner-x" id="voiceBannerClose" aria-label="Dismiss" type="button">×</button>
+  </div>
 
   <main id="main">
     <!-- FLASHCARDS -->
@@ -44,7 +49,6 @@
           <button class="btn" id="fcSpeak" type="button">🔊 Pronounce</button>
           <label class="auto-toggle"><input type="checkbox" id="fcAuto" /> Auto-pronounce</label>
         </div>
-        <p class="voice-note" id="fcVoiceNote" hidden></p>
         <div class="rate-row" id="rateRow" hidden>
           <button class="btn rate" data-grade="again">Again</button>
           <button class="btn rate" data-grade="hard">Hard</button>
@@ -132,10 +136,10 @@
 
   <script src="js/data.js"></script>
   <script src="js/tts.js?v=2"></script>
-  <script src="js/flashcards.js?v=2"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/conjugation.js"></script>
+  <script src="js/flashcards.js?v=3"></script>
+  <script src="js/quiz.js?v=2"></script>
+  <script src="js/conjugation.js?v=2"></script>
   <script src="js/chat.js"></script>
-  <script src="js/app.js?v=2"></script>
+  <script src="js/app.js?v=3"></script>
 </body>
 </html>

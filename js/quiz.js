@@ -31,7 +31,16 @@ const Quiz = (() => {
       .slice(0, 3)
       .map((c) => (askEsToEn ? c.en : c.es));
     const options = shuffle([answer, ...distractors]);
-    return { prompt, sub: "Vocabulary", answer, options, note: askEsToEn ? card.es : card.en };
+    return {
+      prompt,
+      sub: "Vocabulary",
+      answer,
+      options,
+      note: askEsToEn ? card.es : card.en,
+      // Spanish to pronounce: safe to reveal now only when it's already shown.
+      speakNow: askEsToEn ? card.es : null,
+      speakAfter: card.es,
+    };
   }
 
   function buildGrammarQuestion(g) {
@@ -41,6 +50,9 @@ const Quiz = (() => {
       answer: g.answer,
       options: shuffle(g.options),
       note: g.note,
+      speakNow: null,
+      // After answering, read the full sentence with the blank filled in.
+      speakAfter: g.prompt.replace("___", g.answer),
     };
   }
 
@@ -76,7 +88,10 @@ const Quiz = (() => {
     stage.innerHTML = `
       <div class="quiz-card">
         <div class="quiz-sub">Question ${idx + 1} of ${questions.length} · ${q.sub}</div>
-        <div class="quiz-prompt">${q.prompt}</div>
+        <div class="quiz-prompt-row">
+          <div class="quiz-prompt">${q.prompt}</div>
+          <button class="icon-speak" id="qSpeak" type="button" title="Pronounce" hidden>🔊</button>
+        </div>
         <div class="quiz-choices" id="choices"></div>
         <div class="quiz-feedback" id="feedback"></div>
         <div class="quiz-footer">
@@ -92,6 +107,19 @@ const Quiz = (() => {
       b.onclick = () => answer(b, opt, q);
       choices.appendChild(b);
     });
+    bindSpeak(q.speakNow);
+  }
+
+  // Show/hide the 🔊 button and bind it to the given Spanish text.
+  function bindSpeak(text) {
+    const b = document.getElementById("qSpeak");
+    if (!b) return;
+    if (!TTS.supported || !text) {
+      b.hidden = true;
+      return;
+    }
+    b.hidden = false;
+    b.onclick = () => TTS.speak(text, window.showVoiceBanner);
   }
 
   function answer(btn, opt, q) {
@@ -108,6 +136,8 @@ const Quiz = (() => {
     const fb = document.getElementById("feedback");
     fb.className = "quiz-feedback note";
     fb.textContent = (correct ? "✓ Correct. " : `✗ Answer: ${q.answer}. `) + (q.note || "");
+    // Now that the answer is revealed, allow hearing the Spanish.
+    bindSpeak(q.speakAfter);
     const nextBtn = document.getElementById("quizNext");
     nextBtn.hidden = false;
     nextBtn.textContent = idx + 1 >= questions.length ? "See results ›" : "Next ›";

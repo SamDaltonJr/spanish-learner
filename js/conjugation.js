@@ -68,6 +68,7 @@ const Conjugation = (() => {
         <div class="conj-head">
           <div>
             <span class="conj-verb">${verb.infinitive}<span class="verb-en">${verb.en}</span></span>
+            <button class="icon-speak" id="conjSpeakVerb" type="button" title="Pronounce" hidden>🔊</button>
           </div>
           <span class="conj-badge">${verb.type}</span>
         </div>
@@ -100,6 +101,13 @@ const Conjugation = (() => {
       b.onclick = () => insertChar(b.dataset.ch);
     });
     document.getElementById("conjCheck").onclick = check;
+
+    // Pronounce the infinitive
+    if (TTS.supported) {
+      const vb = document.getElementById("conjSpeakVerb");
+      vb.hidden = false;
+      vb.onclick = () => TTS.speak(verb.infinitive, window.showVoiceBanner);
+    }
   }
 
   function insertChar(ch) {
@@ -126,6 +134,17 @@ const Conjugation = (() => {
       inp.classList.toggle("wrong", !correct);
       inp.disabled = true;
       ans.textContent = correct ? "✓" : forms[i];
+      // Offer to hear the correct conjugated form.
+      if (TTS.supported) {
+        const sp = document.createElement("button");
+        sp.className = "icon-speak row-speak";
+        sp.type = "button";
+        sp.title = "Pronounce";
+        sp.textContent = "🔊";
+        sp.onclick = () => TTS.speak(forms[i], window.showVoiceBanner);
+        ans.appendChild(document.createTextNode(" "));
+        ans.appendChild(sp);
+      }
     });
     document.getElementById("conjCheck").hidden = true;
     const nextBtn = document.getElementById("conjNext");

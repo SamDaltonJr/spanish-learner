@@ -81,18 +81,7 @@ const Flashcards = (() => {
     front.innerHTML = `<div class="word">${current.es}</div><div class="sub">Spanish · tap to reveal</div>`;
     back.innerHTML = `<div class="word">${current.en}</div><div class="sub">${current.es}</div>`;
     updateProgress();
-    if (autoSpeak) TTS.speak(current.es, showNoVoiceHint);
-  }
-
-  function showNoVoiceHint() {
-    const note = document.getElementById("fcVoiceNote");
-    if (!note || !note.hidden) return;
-    note.hidden = false;
-    note.innerHTML =
-      "🔈 No Spanish voice found on this device, so pronunciation uses your " +
-      "default voice. To get an authentic Spanish accent, install a Spanish " +
-      "voice — on Windows: <em>Settings → Time &amp; language → Language &amp; " +
-      "region → Add a language → Spanish</em> (include Speech), then reload.";
+    if (autoSpeak) TTS.speak(current.es, window.showVoiceBanner);
   }
 
   function updateProgress() {
@@ -161,12 +150,12 @@ const Flashcards = (() => {
     if (TTS.supported) {
       autoBox.checked = autoSpeak;
       document.getElementById("fcSpeak").onclick = () => {
-        if (current) TTS.speak(current.es, showNoVoiceHint);
+        if (current) TTS.speak(current.es, window.showVoiceBanner);
       };
       autoBox.onchange = () => {
         autoSpeak = autoBox.checked;
         localStorage.setItem(AUTO_KEY, autoSpeak ? "1" : "0");
-        if (autoSpeak && current) TTS.speak(current.es, showNoVoiceHint);
+        if (autoSpeak && current) TTS.speak(current.es, window.showVoiceBanner);
       };
     } else {
       // No speech support in this browser — hide the controls entirely.
