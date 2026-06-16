@@ -5,7 +5,10 @@ framework, no build step — so it deploys straight to **GitHub Pages**.
 
 ## Features
 
-- **🃏 Flashcards** — 13 themed/frequency vocabulary decks (~300 words) with
+- **📖 Lessons** — short teaching lessons (present tense, ser vs. estar,
+  preterite vs. imperfect, future, por vs. para, gender/articles, the
+  subjunctive) with tables and spoken examples.
+- **🃏 Flashcards** — 23 themed/frequency vocabulary decks (~540 words) with
   spaced repetition. Your progress is saved in your browser (localStorage).
 - **✅ Quiz** — 10-question quizzes mixing vocabulary translation and grammar
   usage (subjunctive, preterite vs. imperfect, comparatives, etc.).
@@ -89,7 +92,9 @@ index.html          App shell + tab navigation
 css/styles.css      Styles
 js/data.js          Vocab decks, irregular verbs, grammar questions
 js/vocab_extra.js   High-frequency vocabulary decks
+js/vocab_extra2.js  Thematic vocabulary decks (body, home, food…)
 js/conjugator.js    Regular-verb conjugation engine + verb list
+js/lessons.js       Teaching lessons (grammar/conjugation)
 js/tts.js           Text-to-speech (Web Speech API)
 js/flashcards.js    Spaced-repetition flashcards
 js/quiz.js          Quiz engine

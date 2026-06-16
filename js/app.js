@@ -1,7 +1,7 @@
 // app.js — navigation and bootstrap
 (function () {
-  const views = ["flashcards", "quiz", "conjugation", "chat"];
-  const modules = { flashcards: Flashcards, quiz: Quiz, conjugation: Conjugation, chat: Chat };
+  const views = ["flashcards", "lessons", "quiz", "conjugation", "chat"];
+  const modules = { flashcards: Flashcards, lessons: Lessons, quiz: Quiz, conjugation: Conjugation, chat: Chat };
 
   // Shared "no Spanish voice" banner, shown once per session across all screens.
   const VOICE_DISMISS_KEY = "es_voice_hint_dismissed";
@@ -31,6 +31,7 @@
   function init() {
     TTS.init();
     Flashcards.init();
+    Lessons.init();
     Quiz.init();
     Conjugation.init();
     Chat.init();
