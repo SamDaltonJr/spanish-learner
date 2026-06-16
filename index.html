@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aprende Español · Spanish Learner</title>
+  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇪🇸</text></svg>" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-flag">🇪🇸</span>
+      <div>
+        <h1>Aprende Español</h1>
+        <p class="tagline">Your intermediate Spanish trainer</p>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab" data-view="flashcards">🃏 Flashcards</button>
+      <button class="tab" data-view="quiz">✅ Quiz</button>
+      <button class="tab" data-view="conjugation">🔀 Conjugation</button>
+      <button class="tab" data-view="chat">💬 Tutor</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- FLASHCARDS -->
+    <section class="view" id="view-flashcards">
+      <div class="deck-picker" id="deckPicker"></div>
+      <div class="flashcard-stage" id="flashcardStage" hidden>
+        <div class="progress-row">
+          <button class="link-btn" id="fcBack">‹ Decks</button>
+          <span id="fcProgress" class="muted"></span>
+        </div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="flashcard-face flashcard-front" id="fcFront"></div>
+            <div class="flashcard-face flashcard-back" id="fcBack2"></div>
+          </div>
+        </div>
+        <p class="hint">Click the card to flip · then rate how well you knew it</p>
+        <div class="rate-row" id="rateRow" hidden>
+          <button class="btn rate" data-grade="again">Again</button>
+          <button class="btn rate" data-grade="hard">Hard</button>
+          <button class="btn rate" data-grade="good">Good</button>
+          <button class="btn rate" data-grade="easy">Easy</button>
+        </div>
+        <button class="btn primary" id="fcFlip">Flip card</button>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="view" id="view-quiz" hidden>
+      <div class="quiz-setup" id="quizSetup">
+        <h2>Quiz yourself</h2>
+        <p class="muted">Mix of vocabulary translation and grammar usage. 10 questions.</p>
+        <div class="quiz-options">
+          <label><input type="radio" name="quizType" value="mixed" checked /> Mixed</label>
+          <label><input type="radio" name="quizType" value="vocab" /> Vocabulary only</label>
+          <label><input type="radio" name="quizType" value="grammar" /> Grammar only</label>
+        </div>
+        <button class="btn primary" id="startQuiz">Start quiz</button>
+      </div>
+      <div class="quiz-stage" id="quizStage" hidden></div>
+    </section>
+
+    <!-- CONJUGATION -->
+    <section class="view" id="view-conjugation" hidden>
+      <div class="conj-setup" id="conjSetup">
+        <h2>Verb conjugation drills</h2>
+        <p class="muted">Pick the tenses to practice, then fill in the blanks.</p>
+        <div class="conj-tenses" id="conjTenses"></div>
+        <button class="btn primary" id="startConj">Start drill</button>
+      </div>
+      <div class="conj-stage" id="conjStage" hidden></div>
+    </section>
+
+    <!-- CHAT TUTOR -->
+    <section class="view" id="view-chat" hidden>
+      <div class="chat-wrap">
+        <div class="chat-toolbar">
+          <select id="chatLevel" class="select">
+            <option value="A2">A2 · Elementary</option>
+            <option value="B1" selected>B1 · Intermediate</option>
+            <option value="B2">B2 · Upper-intermediate</option>
+          </select>
+          <button class="link-btn" id="chatReset">↻ New conversation</button>
+          <button class="link-btn" id="chatSettings">⚙ API key</button>
+        </div>
+        <div class="chat-log" id="chatLog"></div>
+        <form class="chat-input" id="chatForm">
+          <input type="text" id="chatText" placeholder="Escribe en español…" autocomplete="off" />
+          <button class="btn primary" type="submit" id="chatSend">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- API key modal -->
+  <div class="modal" id="keyModal" hidden>
+    <div class="modal-card">
+      <h3>Connect the AI tutor</h3>
+      <p class="muted">
+        The tutor talks to Claude directly from your browser. Paste an
+        <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Anthropic API key</a>.
+        It is stored only in this browser (localStorage) and sent only to Anthropic's API.
+      </p>
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-..." class="select" />
+      <label class="model-label">Model
+        <select id="modelSelect" class="select">
+          <option value="claude-opus-4-8">Opus 4.8 · most capable</option>
+          <option value="claude-sonnet-4-6" selected>Sonnet 4.6 · balanced (recommended)</option>
+          <option value="claude-haiku-4-5">Haiku 4.5 · fastest / cheapest</option>
+        </select>
+      </label>
+      <div class="modal-actions">
+        <button class="btn" id="keyCancel">Cancel</button>
+        <button class="btn primary" id="keySave">Save</button>
+      </div>
+      <p class="warn-note">
+        ⚠ A browser-stored key is convenient for personal use but is visible to anyone with
+        access to this device. Don't use a shared key, and revoke it if unsure.
+      </p>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/flashcards.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/conjugation.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
