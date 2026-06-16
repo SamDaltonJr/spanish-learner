@@ -170,6 +170,8 @@ h2 { margin-top: 0; }
 .flashcard-face .word { font-size: 1.7rem; font-weight: 600; }
 .flashcard-face .sub { color: var(--muted); margin-top: 8px; font-size: 0.9rem; }
 
+.fc-controls { display: flex; gap: 14px; align-items: center; justify-content: center; margin: 10px 0; flex-wrap: wrap; }
+.auto-toggle { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9rem; cursor: pointer; }
 .rate-row { display: flex; gap: 8px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
 .btn.rate[data-grade="again"] { border-color: #e2b6b1; }
 .btn.rate[data-grade="easy"] { border-color: #b3d9c2; }

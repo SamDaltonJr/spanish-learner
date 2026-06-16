@@ -1,7 +1,9 @@
 // flashcards.js — spaced-repetition flashcards (simplified SM-2)
 const Flashcards = (() => {
   const STORE_KEY = "es_flash_srs";
+  const AUTO_KEY = "es_flash_autospeak";
   let srs = load();
+  let autoSpeak = localStorage.getItem(AUTO_KEY) === "1";
   let currentDeck = null;
   let queue = [];
   let current = null;
@@ -79,6 +81,7 @@ const Flashcards = (() => {
     front.innerHTML = `<div class="word">${current.es}</div><div class="sub">Spanish · tap to reveal</div>`;
     back.innerHTML = `<div class="word">${current.en}</div><div class="sub">${current.es}</div>`;
     updateProgress();
+    if (autoSpeak) TTS.speak(current.es);
   }
 
   function updateProgress() {
@@ -140,6 +143,24 @@ const Flashcards = (() => {
     document.querySelectorAll("#rateRow .rate").forEach((b) => {
       b.onclick = () => grade(b.dataset.grade);
     });
+
+    // Text-to-speech controls
+    const controls = document.getElementById("fcControls");
+    const autoBox = document.getElementById("fcAuto");
+    if (TTS.supported) {
+      autoBox.checked = autoSpeak;
+      document.getElementById("fcSpeak").onclick = () => {
+        if (current) TTS.speak(current.es);
+      };
+      autoBox.onchange = () => {
+        autoSpeak = autoBox.checked;
+        localStorage.setItem(AUTO_KEY, autoSpeak ? "1" : "0");
+        if (autoSpeak && current) TTS.speak(current.es);
+      };
+    } else {
+      // No speech support in this browser — hide the controls entirely.
+      controls.hidden = true;
+    }
   }
 
   return { init, onShow: renderDeckPicker };

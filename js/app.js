@@ -15,6 +15,7 @@
   }
 
   function init() {
+    TTS.init();
     Flashcards.init();
     Quiz.init();
     Conjugation.init();

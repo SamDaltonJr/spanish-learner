@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aprende Español · Spanish Learner</title>
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇪🇸</text></svg>" />
 </head>
 <body>
@@ -40,6 +40,10 @@
           </div>
         </div>
         <p class="hint">Click the card to flip · then rate how well you knew it</p>
+        <div class="fc-controls" id="fcControls">
+          <button class="btn" id="fcSpeak" type="button">🔊 Pronounce</button>
+          <label class="auto-toggle"><input type="checkbox" id="fcAuto" /> Auto-pronounce</label>
+        </div>
         <div class="rate-row" id="rateRow" hidden>
           <button class="btn rate" data-grade="again">Again</button>
           <button class="btn rate" data-grade="hard">Hard</button>
@@ -126,6 +130,7 @@
   </div>
 
   <script src="js/data.js"></script>
+  <script src="js/tts.js"></script>
   <script src="js/flashcards.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/conjugation.js"></script>
