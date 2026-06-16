@@ -233,7 +233,7 @@ const THEMATIC_DECKS_2 = [
       { es: "la farmacia", en: "pharmacy" },
       { es: "la medicina", en: "medicine" },
       { es: "la pastilla", en: "pill" },
-      { es: "la receta", en: "prescription" },
+      { es: "la receta médica", en: "prescription" },
       { es: "la enfermedad", en: "illness" },
       { es: "el dolor", en: "pain" },
       { es: "la fiebre", en: "fever" },
